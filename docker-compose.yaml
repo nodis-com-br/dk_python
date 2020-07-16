@@ -1,0 +1,6 @@
+version: '2'
+services:
+  python:
+    image: docker.io/nodisbr/python:3.7.3-r1
+    build:
+      context: .

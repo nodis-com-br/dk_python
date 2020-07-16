@@ -1,0 +1,34 @@
+name: docker-public-image
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build_environment:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'skip_ci') }}
+    steps:
+      - uses: actions/checkout@master
+        name: Checkout repository
+      - uses: nodis-com-br/gha_build-environment@master
+        name: Build environment variables for the project
+  publish_image:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'skip_ci') && github.event_name == 'push' }}
+    needs:
+      - build_environment
+    steps:
+      - uses: actions/checkout@master
+        name: Checkout repository
+      - uses: nodis-com-br/gha_load-environment@master
+        name: Load environment variables for the project
+      - uses: nodis-com-br/gha_docker-publish-image@master
+        name: Build and push docker image
+        env:
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+          DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
