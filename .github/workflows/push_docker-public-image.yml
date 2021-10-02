@@ -25,7 +25,7 @@ jobs:
     uses: nodis-com-br/gha_workflow-jobs/.github/workflows/revert-bump.yaml@master
     needs:
       - publish_image
-    inputs:
+    with:
       build_result: ${{ needs.publish_image.result }}
     secrets:
       github_token: ${{ secrets.GITHUB_TOKEN }}
