@@ -10,8 +10,6 @@ on:
 jobs:
   build_metadata:
     uses: nodis-com-br/gha_workflow-jobs/.github/workflows/build-metadata.yaml@master
-    secrets:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
   publish_image:
     uses: nodis-com-br/gha_workflow-jobs/.github/workflows/publish-public-image.yaml@master
     needs:
@@ -27,5 +25,3 @@ jobs:
       - publish_image
     with:
       build_result: ${{ needs.publish_image.result }}
-    secrets:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
