@@ -23,5 +23,6 @@ jobs:
     uses: nodis-com-br/gha_workflow-jobs/.github/workflows/revert_bump.yaml@master
     needs:
       - build_artifact
+    if: always()
     with:
       build_result: ${{ needs.build_artifact.result }}
