@@ -1,6 +1,6 @@
-version: '2'
+version: '3'
 services:
   python:
-    image: docker.io/nodisbr/python:${VERSION:-1.0.0}
+    image: ghcr.io/nodis-com-br/python:${VERSION:-3.9.10}
     build:
       context: .
