@@ -6,7 +6,7 @@ ENV VERSION="3.9.10"
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install build-essential
-RUN useradd -ms /bin/bash python
+RUN useradd -ms /bin/sh python
 
 USER python
 RUN pip install uwsgi uwsgitop
