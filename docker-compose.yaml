@@ -1,6 +1,6 @@
 version: '3'
 services:
   python:
-    image: ghcr.io/nodis-com-br/python:${VERSION:-3.9.10}
+    image: ghcr.io/nodis-com-br/python:${VERSION:-3.10.4}
     build:
       context: .

@@ -1,20 +1,19 @@
-FROM python:3.9.10-slim-buster
+FROM python:3.10.4-slim-buster
 
 MAINTAINER Pedro Tonini <pedro.tonini@nodis.com.br>
-ENV VERSION="3.9.10"
-
+ENV VERSION="3.10.4"
+ENV PATH="/home/python/.local/bin:${PATH}"
 ARG SUDO_FORCE_REMOVE=yes
 
-RUN apt-get update
-RUN apt-get -y upgrade
-RUN apt-get -y install build-essential
-RUN useradd -Ums /bin/sh python
+RUN apt-get update && apt-get -y upgrade && \
+    apt-get -y install build-essential && \
+    useradd -Ums /bin/sh python
 
 USER python
-RUN pip install uwsgi uwsgitop
+RUN pip install uwsgi uwsgitop pipenv
 
 USER root
-RUN apt-get -y purge build-essential sudo
-RUN apt-get -y autoremove
+RUN apt-get -y purge build-essential sudo && \
+    apt-get -y autoremove
 
 USER python
