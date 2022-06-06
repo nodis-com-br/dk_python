@@ -10,7 +10,7 @@ RUN apt-get update && apt-get -y upgrade && \
     useradd -Ums /bin/sh python
 
 USER python
-RUN pip install uwsgi uwsgitop pipenv gunicorn
+RUN pip install uwsgi uwsgitop pipenv gunicorn uvicorn[standard]
 
 USER root
 RUN apt-get -y purge build-essential libpcre3-dev libssl-dev sudo && \
