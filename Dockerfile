@@ -6,7 +6,7 @@ ENV PATH="/home/python/.local/bin:${PATH}"
 ARG SUDO_FORCE_REMOVE=yes
 
 RUN apt-get update && apt-get -y upgrade && \
-    apt-get -y install build-essential libpcre3-dev libssl-dev && \
+    apt-get -y install build-essential libpcre3-dev libssl-dev iputils-ping telnet && \
     useradd -Ums /bin/sh python
 
 USER python
